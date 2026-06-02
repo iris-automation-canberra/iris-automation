@@ -3,379 +3,1423 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IRIS Automation - Mechanic Voucher Packs</title>
+    <title>IRIS Automation | Premium Car Servicing Vouchers | Canberra</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
-            background: linear-gradient(135deg, #1F4E78 0%, #0F2744 25%, #1F4E78 50%, #0F2744 75%, #1F4E78 100%);
-            background-size: 400% 400%;
-            min-height: 100vh;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #06081A;
+            color: #F1F5F9;
+            line-height: 1.6;
+            overflow-x: hidden;
         }
-        
-        .header {
-            background: rgba(15, 39, 68, 0.8);
-            border-bottom: 1px solid rgba(59, 130, 246, 0.2);
-            padding: 1.5rem;
-            position: sticky;
-            top: 0;
-            z-index: 50;
+
+        /* ── BRAND COLOUR SYSTEM ── */
+        :root {
+            --bg:           #06081A;
+            --bg-2:         #0B0D24;
+            --bg-card:      rgba(255,255,255,0.035);
+            --gold:         #F59E0B;
+            --gold-light:   #FCD34D;
+            --gold-dark:    #B45309;
+            --purple:       #7C3AED;
+            --purple-light: #A78BFA;
+            --red:          #DC2626;
+            --blue:         #2563EB;
+            --blue-light:   #60A5FA;
+            --white:        #FFFFFF;
+            --muted:        #94A3B8;
+            --border:       rgba(245,158,11,0.18);
+            --border-sub:   rgba(255,255,255,0.07);
+            --glass:        rgba(255,255,255,0.04);
+            --glass-border: rgba(255,255,255,0.09);
+            --glow-gold:    0 0 40px rgba(245,158,11,0.25);
+            --glow-purple:  0 0 40px rgba(124,58,237,0.2);
         }
-        
-        .header-content {
-            max-width: 800px;
-            margin: 0 auto;
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-        
-        .logo {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #60A5FA, #4ADE80);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-        }
-        
-        .header-text h1 {
-            color: white;
-            font-size: 1.3rem;
-        }
-        
-        .header-text p {
-            color: #93C5FD;
-            font-size: 0.9rem;
-        }
-        
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 3rem 1.5rem;
-        }
-        
-        .hero {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-        
-        .hero h2 {
-            color: white;
-            font-size: 2.5rem;
+
+        /* ── LAYOUT ── */
+        .container { max-width: 960px; margin: 0 auto; padding: 0 1.5rem; }
+        .section { padding: 6rem 0; }
+        .alt-bg { background: var(--bg-2); }
+
+        .section-eyebrow {
+            display: flex; align-items: center; justify-content: center; gap: 0.75rem;
             margin-bottom: 1rem;
         }
-        
-        .hero p {
-            color: #BFDBFE;
-            font-size: 1.1rem;
-            margin-bottom: 1.5rem;
+        .eyebrow-line { width: 40px; height: 1px; background: var(--gold); opacity: 0.6; }
+        .eyebrow-text { color: var(--gold); font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; }
+        .section-title {
+            font-size: 2.2rem; font-weight: 800; text-align: center;
+            margin-bottom: 0.75rem; letter-spacing: -0.02em;
+            color: var(--white);
         }
-        
-        .price-badge {
-            display: inline-block;
-            background: linear-gradient(135deg, #4ADE80, #60A5FA);
-            color: #0F2744;
-            padding: 0.75rem 1.5rem;
-            border-radius: 0.5rem;
-            font-weight: bold;
-            font-size: 1.1rem;
+        .section-sub { color: var(--muted); text-align: center; font-size: 1.05rem; margin-bottom: 3rem; max-width: 580px; margin-left: auto; margin-right: auto; }
+
+        /* ── ANIMATED BACKGROUND ── */
+        body::before {
+            content: '';
+            position: fixed; inset: 0; z-index: -1;
+            background:
+                radial-gradient(ellipse 80% 50% at 10% 80%, rgba(124,58,237,0.08) 0%, transparent 60%),
+                radial-gradient(ellipse 60% 40% at 90% 10%, rgba(245,158,11,0.06) 0%, transparent 55%),
+                radial-gradient(ellipse 50% 60% at 50% 50%, rgba(37,99,235,0.04) 0%, transparent 70%),
+                var(--bg);
         }
-        
-        .value-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1rem;
+
+        /* ── HEADER ── */
+        .header {
+            background: rgba(6,8,26,0.88);
+            border-bottom: 1px solid var(--border-sub);
+            padding: 0.85rem 0;
+            position: sticky; top: 0; z-index: 100;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+        .header-inner { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+        .logo-area { display: flex; align-items: center; gap: 0.9rem; }
+        .logo-img-wrap {
+            background: white; border-radius: 10px; padding: 4px 6px;
+            display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+        }
+        .logo-img-wrap img { height: 38px; width: auto; display: block; }
+        .logo-text { font-size: 1.05rem; font-weight: 800; color: var(--white); letter-spacing: -0.01em; }
+        .logo-sub { font-size: 0.72rem; color: var(--muted); font-weight: 500; letter-spacing: 0.02em; }
+        .header-cta {
+            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+            color: #0A0612; font-weight: 800; padding: 0.6rem 1.4rem;
+            border-radius: 0.5rem; text-decoration: none; font-size: 0.88rem;
+            transition: all 0.25s; white-space: nowrap;
+            box-shadow: 0 0 20px rgba(245,158,11,0.3);
+            letter-spacing: 0.01em;
+        }
+        .header-cta:hover { transform: translateY(-1px); box-shadow: 0 0 30px rgba(245,158,11,0.45); }
+
+        /* ── HERO ── */
+        .hero {
+            padding: 5.5rem 0 4.5rem; text-align: center;
+            position: relative; overflow: hidden;
+        }
+        .hero::before {
+            content: ''; position: absolute; top: -30%; left: 50%;
+            transform: translateX(-50%); width: 1000px; height: 700px;
+            background: radial-gradient(ellipse, rgba(124,58,237,0.12) 0%, rgba(245,158,11,0.06) 40%, transparent 70%);
+            pointer-events: none; animation: pulse-glow 6s ease-in-out infinite;
+        }
+        @keyframes pulse-glow {
+            0%, 100% { opacity: 0.8; transform: translateX(-50%) scale(1); }
+            50% { opacity: 1; transform: translateX(-50%) scale(1.05); }
+        }
+        .hero-logo-wrap {
+            display: inline-block; background: white;
+            border-radius: 18px; padding: 12px 18px;
             margin-bottom: 2rem;
+            box-shadow: 0 8px 40px rgba(0,0,0,0.5), 0 0 60px rgba(245,158,11,0.15);
         }
-        
-        .value-card {
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(59, 130, 246, 0.3);
-            border-radius: 0.5rem;
-            padding: 1.5rem;
-            text-align: center;
+        .hero-logo-wrap img { height: 80px; width: auto; display: block; }
+        .hero-badge {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            background: rgba(245,158,11,0.1); border: 1px solid rgba(245,158,11,0.3);
+            color: var(--gold-light); padding: 0.45rem 1.1rem; border-radius: 100px;
+            font-size: 0.82rem; font-weight: 700; margin-bottom: 1.75rem;
+            letter-spacing: 0.03em;
         }
-        
-        .value-card .amount {
-            color: #4ADE80;
-            font-weight: bold;
-            font-size: 1.5rem;
-            margin-bottom: 0.5rem;
+        .hero h1 {
+            font-size: 3.75rem; font-weight: 900; line-height: 1.05;
+            margin-bottom: 1.4rem; letter-spacing: -0.03em;
+            background: linear-gradient(135deg, #FFFFFF 0%, #FCD34D 50%, #F59E0B 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
-        
-        .value-card .label {
-            color: #BFDBFE;
-            font-size: 0.9rem;
+        .hero p {
+            font-size: 1.2rem; color: #CBD5E1;
+            max-width: 580px; margin: 0 auto 2.25rem;
+            font-weight: 400; line-height: 1.7;
         }
-        
-        .form-container {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(59, 130, 246, 0.3);
-            border-radius: 1rem;
-            padding: 2rem;
+        .hero-ctas { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-bottom: 3.5rem; }
+        .btn-gold {
+            background: linear-gradient(135deg, var(--gold), #D97706);
+            color: #09060A; font-weight: 800; padding: 1rem 2.25rem;
+            border-radius: 0.65rem; text-decoration: none; font-size: 1rem;
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            transition: all 0.25s;
+            box-shadow: 0 4px 24px rgba(245,158,11,0.35);
+            letter-spacing: 0.01em;
+        }
+        .btn-gold:hover { transform: translateY(-2px); box-shadow: 0 8px 36px rgba(245,158,11,0.5); }
+        .btn-outline {
+            border: 1px solid rgba(255,255,255,0.2); color: #CBD5E1;
+            font-weight: 600; padding: 1rem 2.25rem; border-radius: 0.65rem;
+            text-decoration: none; font-size: 1rem; display: inline-block;
+            transition: all 0.25s; backdrop-filter: blur(8px);
+        }
+        .btn-outline:hover { border-color: var(--gold); color: var(--gold-light); }
+        .voucher-preview {
+            display: flex; gap: 1.5rem; justify-content: center;
+            align-items: flex-start; flex-wrap: wrap;
+        }
+        .voucher-hero-img {
+            width: 240px; border-radius: 1.1rem;
+            border: 1px solid rgba(245,158,11,0.2);
+            box-shadow: 0 24px 64px rgba(0,0,0,0.6), 0 0 30px rgba(245,158,11,0.1);
+            transition: transform 0.3s; display: block;
+        }
+        .voucher-hero-img:hover { transform: translateY(-6px) rotate(-1deg); }
+        .voucher-hero-wrap { position: relative; display: inline-block; }
+        .voucher-cs-badge {
+            position: absolute; top: 10px; left: 50%; transform: translateX(-50%);
+            background: rgba(6,8,26,0.85); border: 1px solid rgba(245,158,11,0.4);
+            color: var(--gold-light); font-size: 0.72rem; font-weight: 700;
+            padding: 0.3rem 0.85rem; border-radius: 100px; white-space: nowrap;
+            letter-spacing: 0.04em; z-index: 2;
+        }
+        .voucher-cs-overlay {
+            position: absolute; inset: 0; border-radius: 1.1rem;
+            background: rgba(6,8,26,0.45); pointer-events: none;
+        }
+
+        /* ── LOCATION PICKER ── */
+        .location-picker { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+        .location-card {
+            background: var(--bg-card); border: 1px solid var(--glass-border);
+            border-radius: 1.25rem; overflow: hidden;
+            transition: all 0.3s; backdrop-filter: blur(16px);
+            display: flex; flex-direction: column;
+        }
+        .location-card.active-loc:hover { border-color: rgba(245,158,11,0.4); transform: translateY(-4px); box-shadow: var(--glow-gold); }
+        .location-card.coming-loc { opacity: 0.7; }
+        .location-card-img { width: 100%; display: block; max-height: 160px; object-fit: cover; object-position: top; }
+        .location-card-body { padding: 1.4rem; flex: 1; display: flex; flex-direction: column; gap: 0.75rem; }
+        .location-card-name { font-size: 1rem; font-weight: 800; color: var(--white); letter-spacing: -0.01em; }
+        .location-card-suburb { color: var(--gold); font-size: 0.8rem; font-weight: 700; letter-spacing: 0.02em; }
+        .location-card-areas { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-top: 0.1rem; }
+        .loc-area-tag {
+            background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.07);
+            color: #64748B; font-size: 0.72rem; padding: 0.2rem 0.6rem; border-radius: 100px;
+        }
+        .location-detail { color: var(--muted); font-size: 0.82rem; display: flex; align-items: center; gap: 0.4rem; }
+        .location-card-value {
+            padding-top: 0.75rem; border-top: 1px solid rgba(255,255,255,0.06);
+            display: flex; align-items: center; justify-content: space-between;
+        }
+        .location-card-value .lv-label { color: var(--muted); font-size: 0.78rem; }
+        .location-card-value .lv-amount { color: var(--gold); font-weight: 900; font-size: 1.1rem; }
+        .location-select-btn {
+            display: block; width: 100%;
+            background: linear-gradient(135deg, var(--gold), #D97706);
+            color: #09060A; font-weight: 800; padding: 0.85rem;
+            border: none; border-radius: 0 0 1.25rem 1.25rem;
+            font-size: 0.9rem; cursor: pointer; font-family: 'Inter', sans-serif;
+            letter-spacing: 0.02em; transition: all 0.25s;
+            box-shadow: 0 4px 20px rgba(245,158,11,0.2);
+        }
+        .location-select-btn:hover { box-shadow: 0 6px 28px rgba(245,158,11,0.4); }
+        .location-cs-btn {
+            display: block; width: 100%;
+            background: rgba(255,255,255,0.04);
+            color: #FCD34D; font-weight: 700; padding: 0.85rem;
+            border: none; border-top: 1px solid rgba(255,255,255,0.06);
+            border-radius: 0 0 1.25rem 1.25rem;
+            font-size: 0.85rem; cursor: default; font-family: 'Inter', sans-serif;
+            letter-spacing: 0.04em;
+        }
+
+        /* ── SUBURB SEARCH ── */
+        .suburb-search-wrap { max-width: 520px; margin: 0 auto 2.75rem; }
+        .suburb-search-label {
+            color: var(--muted); font-size: 0.82rem; font-weight: 600;
+            text-align: center; margin-bottom: 0.65rem; letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+        .suburb-input {
+            width: 100%; background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(245,158,11,0.3); color: var(--white);
+            padding: 1rem 1.25rem; border-radius: 0.75rem;
+            font-size: 1rem; font-family: 'Inter', sans-serif;
+            transition: all 0.25s; text-align: center;
+        }
+        .suburb-input::placeholder { color: rgba(148,163,184,0.45); }
+        .suburb-input:focus {
+            outline: none; border-color: rgba(245,158,11,0.65);
+            background: rgba(245,158,11,0.04);
+            box-shadow: 0 0 0 3px rgba(245,158,11,0.1);
+        }
+        .suburb-result {
+            margin-top: 0.85rem; padding: 0.85rem 1.1rem;
+            border-radius: 0.65rem; text-align: center;
+            font-size: 0.9rem; font-weight: 600; transition: all 0.3s;
+            display: none;
+        }
+        .suburb-result.found {
+            background: rgba(245,158,11,0.08); border: 1px solid rgba(245,158,11,0.25);
+            color: var(--gold-light);
+        }
+        .suburb-result.not-found {
+            background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.07);
+            color: var(--muted);
+        }
+        .location-card.highlighted {
+            border-color: rgba(245,158,11,0.6) !important;
+            box-shadow: 0 0 0 2px rgba(245,158,11,0.3), var(--glow-gold) !important;
+            transform: translateY(-4px);
+        }
+
+        /* ── TRUST BAR ── */
+        .trust-bar {
+            background: rgba(0,0,0,0.3);
+            border-top: 1px solid var(--border-sub);
+            border-bottom: 1px solid var(--border-sub);
+            padding: 1.4rem 0;
             backdrop-filter: blur(10px);
         }
-        
-        .form-container h3 {
-            color: white;
-            font-size: 1.5rem;
-            margin-bottom: 1.5rem;
+        .trust-items { display: flex; justify-content: center; gap: 2.5rem; flex-wrap: wrap; }
+        .trust-item {
+            display: flex; align-items: center; gap: 0.55rem;
+            color: #CBD5E1; font-size: 0.87rem; font-weight: 600;
         }
-        
-        .form-group {
-            margin-bottom: 1.5rem;
+        .trust-item .t-icon { color: var(--gold); font-size: 1rem; }
+
+        /* ── HOW IT WORKS ── */
+        .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; position: relative; }
+        .steps::before {
+            content: '';
+            position: absolute; top: 2rem; left: calc(16.6% + 1rem); right: calc(16.6% + 1rem);
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+            opacity: 0.3;
         }
-        
-        .form-group label {
+        .step { text-align: center; padding: 2rem 1.5rem; position: relative; }
+        .step-number {
+            width: 60px; height: 60px; border-radius: 50%;
+            background: linear-gradient(135deg, var(--purple), var(--gold));
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.3rem; font-weight: 900; color: white;
+            margin: 0 auto 1.25rem;
+            box-shadow: 0 0 30px rgba(124,58,237,0.35);
+        }
+        .step h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 0.6rem; color: var(--white); }
+        .step p { color: var(--muted); font-size: 0.9rem; line-height: 1.7; }
+
+        /* ── VOUCHER SHOWCASE ── */
+        .voucher-tabs { display: flex; gap: 0.75rem; justify-content: center; margin-bottom: 2.25rem; flex-wrap: wrap; }
+        .tab-btn {
+            background: var(--glass); border: 1px solid var(--glass-border);
+            color: var(--muted); padding: 0.65rem 1.6rem; border-radius: 100px;
+            font-size: 0.88rem; font-weight: 600; cursor: pointer; font-family: 'Inter', sans-serif;
+            transition: all 0.25s;
+        }
+        .tab-btn.active {
+            background: rgba(245,158,11,0.12); border-color: rgba(245,158,11,0.4);
+            color: var(--gold-light);
+            box-shadow: 0 0 20px rgba(245,158,11,0.15);
+        }
+        .tab-btn:hover:not(.active) { border-color: var(--glass-border); color: var(--white); }
+        .tab-panel { display: none; }
+        .tab-panel.active { display: block; animation: fadeIn 0.3s ease; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+        .voucher-pair { display: flex; gap: 1.5rem; justify-content: center; align-items: flex-start; flex-wrap: wrap; }
+        .voucher-pair-wrap { flex: 1; min-width: 280px; max-width: 420px; }
+        .voucher-pair-img {
+            width: 100%; border-radius: 1rem;
+            border: 1px solid rgba(245,158,11,0.2);
+            box-shadow: 0 16px 48px rgba(0,0,0,0.5);
             display: block;
-            color: #BFDBFE;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
         }
-        
-        input, select {
-            width: 100%;
-            background: rgba(30, 50, 80, 0.5);
-            border: 1px solid rgba(59, 130, 246, 0.3);
-            color: white;
-            padding: 0.75rem;
-            border-radius: 0.5rem;
-            font-size: 1rem;
+        .voucher-label {
+            text-align: center; color: var(--muted);
+            font-size: 0.78rem; font-weight: 600; margin-top: 0.75rem;
+            text-transform: uppercase; letter-spacing: 0.1em;
         }
-        
-        input::placeholder {
-            color: rgba(147, 197, 253, 0.5);
+
+        /* ── WHAT'S INCLUDED ── */
+        .included-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-bottom: 2.5rem; }
+        .included-card {
+            background: var(--bg-card); border: 1px solid var(--glass-border);
+            border-radius: 1.1rem; padding: 1.5rem;
+            display: flex; align-items: flex-start; gap: 1rem;
+            transition: all 0.3s; backdrop-filter: blur(16px);
         }
-        
-        input:focus {
-            outline: none;
-            border-color: #60A5FA;
+        .included-card:hover {
+            border-color: rgba(245,158,11,0.3);
+            background: rgba(245,158,11,0.04);
+            transform: translateY(-2px);
         }
-        
-        .radio-group {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1rem;
-            margin-top: 1rem;
+        .included-icon {
+            width: 44px; height: 44px; border-radius: 0.75rem; flex-shrink: 0;
+            background: rgba(245,158,11,0.1); border: 1px solid rgba(245,158,11,0.2);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.3rem;
         }
-        
-        .radio-label {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            padding: 1rem;
-            background: rgba(30, 50, 80, 0.3);
-            border: 1px solid rgba(59, 130, 246, 0.2);
-            border-radius: 0.5rem;
-            cursor: pointer;
+        .included-card h4 { font-size: 0.93rem; font-weight: 700; margin-bottom: 0.2rem; color: var(--white); }
+        .included-card .value { color: var(--gold); font-weight: 700; font-size: 0.9rem; }
+        .included-card p { color: var(--muted); font-size: 0.8rem; margin-top: 0.3rem; line-height: 1.6; }
+        .total-value-box {
+            background: linear-gradient(135deg, rgba(245,158,11,0.07), rgba(124,58,237,0.07));
+            border: 1px solid rgba(245,158,11,0.2); border-radius: 1.25rem;
+            padding: 2.5rem; text-align: center;
+            position: relative; overflow: hidden;
+        }
+        .total-value-box::before {
+            content: '';
+            position: absolute; top: -50%; left: -20%; width: 140%; height: 200%;
+            background: radial-gradient(ellipse, rgba(245,158,11,0.06) 0%, transparent 60%);
+            pointer-events: none;
+        }
+        .total-value-box .vs { color: var(--muted); font-size: 0.9rem; margin-bottom: 1rem; font-weight: 500; }
+        .price-row { display: flex; align-items: center; justify-content: center; gap: 1.75rem; flex-wrap: wrap; }
+        .price-crossed { text-decoration: line-through; color: #64748B; font-size: 1.7rem; font-weight: 800; }
+        .price-arrow { font-size: 1.5rem; color: var(--gold); }
+        .price-real { font-size: 3.5rem; font-weight: 900; color: var(--gold); letter-spacing: -0.02em; }
+        .saving-note { color: var(--muted); margin-top: 1rem; font-size: 0.95rem; font-weight: 500; }
+        .saving-highlight { color: var(--gold-light); font-weight: 700; }
+
+        /* ── MECHANICS ── */
+        .mechanics-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+        .mechanic-card {
+            background: var(--bg-card); border: 1px solid var(--glass-border);
+            border-radius: 1.25rem; overflow: hidden;
+            transition: all 0.3s; backdrop-filter: blur(16px);
+        }
+        .mechanic-card:hover { border-color: rgba(245,158,11,0.3); transform: translateY(-3px); box-shadow: var(--glow-gold); }
+        .mechanic-voucher-img { width: 100%; display: block; }
+        .mechanic-body { padding: 1.6rem; }
+        .mechanic-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.2rem; }
+        .mechanic-icon {
+            width: 46px; height: 46px; border-radius: 0.85rem; flex-shrink: 0;
+            background: linear-gradient(135deg, var(--purple), var(--blue));
+            display: flex; align-items: center; justify-content: center; font-size: 1.3rem;
+            box-shadow: 0 4px 16px rgba(124,58,237,0.3);
+        }
+        .mechanic-name { font-size: 1.05rem; font-weight: 800; color: var(--white); letter-spacing: -0.01em; }
+        .mechanic-suburb { color: var(--gold); font-size: 0.78rem; font-weight: 600; }
+        .mechanic-detail { display: flex; align-items: center; gap: 0.5rem; color: #94A3B8; font-size: 0.84rem; margin-bottom: 0.42rem; }
+        .service-list { margin: 1.2rem 0; border-top: 1px solid rgba(255,255,255,0.06); padding-top: 1.2rem; }
+        .service-list-title {
+            font-size: 0.72rem; font-weight: 800; color: var(--gold);
+            text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 0.75rem;
+        }
+        .service-row {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 0.38rem 0; border-bottom: 1px solid rgba(255,255,255,0.04);
+            font-size: 0.82rem;
+        }
+        .service-row:last-child { border-bottom: none; }
+        .service-name { color: #94A3B8; }
+        .service-saving { color: var(--gold-light); font-weight: 700; }
+        .mechanic-value {
+            margin-top: 1rem; padding-top: 1rem;
+            border-top: 1px solid rgba(255,255,255,0.06);
+            display: flex; align-items: center; justify-content: space-between;
+        }
+        .mechanic-value .label { color: var(--muted); font-size: 0.82rem; }
+        .mechanic-value .amount { color: var(--gold); font-weight: 900; font-size: 1.3rem; letter-spacing: -0.01em; }
+        .coming-soon-card {
+            grid-column: 1 / -1;
+            border: 1px solid rgba(245,158,11,0.2);
+            border-radius: 1.25rem; overflow: hidden;
+            display: grid; grid-template-columns: 1fr 1.4fr;
+            background: var(--bg-card); backdrop-filter: blur(16px);
+        }
+        .coming-soon-img-wrap {
+            position: relative; overflow: hidden;
+        }
+        .coming-soon-img-wrap img {
+            width: 100%; height: 100%; object-fit: cover; display: block;
+            filter: brightness(0.75) saturate(0.9);
+            transition: filter 0.3s;
+        }
+        .coming-soon-card:hover .coming-soon-img-wrap img { filter: brightness(0.85) saturate(1); }
+        .coming-soon-img-overlay {
+            position: absolute; inset: 0;
+            background: linear-gradient(90deg, transparent 60%, var(--bg-card) 100%);
+        }
+        .coming-soon-body {
+            padding: 2rem 2rem 2rem 1.5rem;
+            display: flex; flex-direction: column; justify-content: center; gap: 1rem;
+        }
+        .coming-soon-badge {
+            display: inline-flex; align-items: center; gap: 0.4rem;
+            background: rgba(251,191,36,0.1); border: 1px solid rgba(251,191,36,0.25);
+            color: #FCD34D; padding: 0.4rem 1rem; border-radius: 100px;
+            font-size: 0.78rem; font-weight: 700; width: fit-content; letter-spacing: 0.05em;
+        }
+        .coming-soon-name { font-size: 1.4rem; font-weight: 800; color: var(--white); letter-spacing: -0.02em; }
+        .coming-soon-location { color: var(--gold); font-size: 0.85rem; font-weight: 600; }
+        .coming-soon-details { display: flex; flex-direction: column; gap: 0.35rem; }
+        .coming-soon-detail { color: var(--muted); font-size: 0.84rem; display: flex; align-items: center; gap: 0.5rem; }
+        .coming-soon-services {
+            display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.25rem;
+        }
+        .cs-tag {
+            background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08);
+            color: #94A3B8; font-size: 0.75rem; padding: 0.25rem 0.7rem; border-radius: 100px;
+        }
+        .coming-soon-value {
+            display: flex; align-items: center; justify-content: space-between;
+            padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.06);
+        }
+        .coming-soon-value .label { color: var(--muted); font-size: 0.82rem; }
+        .coming-soon-value .amount { color: var(--gold); font-weight: 900; font-size: 1.2rem; opacity: 0.6; }
+
+        /* ── TESTIMONIALS ── */
+        .testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+        .testimonial-card {
+            background: var(--bg-card); border: 1px solid var(--glass-border);
+            border-radius: 1.1rem; padding: 1.6rem;
+            backdrop-filter: blur(16px); transition: all 0.3s;
+        }
+        .testimonial-card:hover { border-color: rgba(245,158,11,0.2); transform: translateY(-2px); }
+        .stars { color: var(--gold); font-size: 0.9rem; letter-spacing: 2px; margin-bottom: 1rem; }
+        .testimonial-text { color: #94A3B8; font-size: 0.88rem; line-height: 1.8; margin-bottom: 1.2rem; font-style: italic; }
+        .testimonial-author { display: flex; align-items: center; gap: 0.75rem; }
+        .author-avatar {
+            width: 38px; height: 38px; border-radius: 50%; flex-shrink: 0;
+            background: linear-gradient(135deg, var(--purple), var(--gold));
+            display: flex; align-items: center; justify-content: center;
+            font-weight: 800; font-size: 0.78rem; color: white;
+        }
+        .author-name { font-weight: 700; font-size: 0.87rem; color: var(--white); }
+        .author-location { color: var(--muted); font-size: 0.76rem; }
+
+        /* ── FAQ ── */
+        .faq-list { max-width: 720px; margin: 0 auto; }
+        .faq-item {
+            border: 1px solid var(--glass-border); border-radius: 0.85rem;
+            margin-bottom: 0.65rem; overflow: hidden;
+            backdrop-filter: blur(12px); background: var(--bg-card);
+        }
+        .faq-question {
+            width: 100%; background: transparent; border: none; color: var(--white);
+            padding: 1.25rem 1.5rem; text-align: left; font-size: 0.94rem; font-weight: 600;
+            cursor: pointer; display: flex; align-items: center; justify-content: space-between;
+            gap: 1rem; transition: background 0.2s; font-family: 'Inter', sans-serif;
+        }
+        .faq-question:hover { background: rgba(255,255,255,0.03); }
+        .faq-chevron {
+            width: 24px; height: 24px; border-radius: 50%;
+            background: rgba(245,158,11,0.1); border: 1px solid rgba(245,158,11,0.2);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 0.65rem; color: var(--gold); flex-shrink: 0;
             transition: all 0.3s;
         }
-        
-        .radio-label:hover {
-            border-color: rgba(59, 130, 246, 0.6);
+        .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.35s ease; }
+        .faq-answer-inner { padding: 0 1.5rem 1.4rem; color: #94A3B8; font-size: 0.9rem; line-height: 1.8; }
+        .faq-item.open .faq-answer { max-height: 300px; }
+        .faq-item.open .faq-chevron { transform: rotate(180deg); background: rgba(245,158,11,0.2); }
+
+        /* ── FORM ── */
+        .form-section-inner {
+            max-width: 720px; margin: 0 auto;
+            background: rgba(255,255,255,0.03); border: 1px solid rgba(245,158,11,0.15);
+            border-radius: 1.5rem; padding: 2.75rem;
+            backdrop-filter: blur(20px);
+            box-shadow: 0 0 80px rgba(124,58,237,0.1);
         }
-        
-        .radio-label input {
-            width: auto;
-            margin: 0;
+        .form-header { text-align: center; margin-bottom: 2rem; }
+        .form-header h3 { font-size: 1.8rem; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 0.4rem; }
+        .form-header p { color: var(--muted); font-size: 0.95rem; }
+        .form-header .price-pill {
+            display: inline-block; background: rgba(245,158,11,0.12);
+            border: 1px solid rgba(245,158,11,0.25); color: var(--gold-light);
+            font-weight: 800; padding: 0.35rem 1rem; border-radius: 100px;
+            font-size: 1rem; margin-bottom: 0.5rem;
         }
-        
-        .radio-text {
-            color: white;
+        .form-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.2rem; }
+        .form-group { display: flex; flex-direction: column; gap: 0.45rem; }
+        .form-group.full { grid-column: 1 / -1; }
+        .form-group label { color: #CBD5E1; font-weight: 600; font-size: 0.82rem; letter-spacing: 0.02em; }
+        .form-group input, .form-group select {
+            background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1);
+            color: var(--white); padding: 0.85rem 1rem; border-radius: 0.7rem;
+            font-size: 0.93rem; transition: all 0.25s; font-family: 'Inter', sans-serif;
         }
-        
-        .radio-text .subtitle {
-            color: #93C5FD;
-            font-size: 0.85rem;
-            display: block;
+        .form-group input::placeholder { color: rgba(148,163,184,0.5); }
+        .form-group input:focus, .form-group select:focus {
+            outline: none;
+            border-color: rgba(245,158,11,0.5);
+            background: rgba(245,158,11,0.04);
+            box-shadow: 0 0 0 3px rgba(245,158,11,0.08);
         }
-        
-        button {
+        .form-group select option { background: #0B0D24; }
+        .radio-cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.75rem; }
+        .radio-cards.stacked { grid-template-columns: 1fr; }
+        .radio-card {
+            border: 1px solid rgba(255,255,255,0.09); border-radius: 0.75rem; padding: 1rem 1.1rem;
+            cursor: pointer; transition: all 0.25s;
+            display: flex; align-items: flex-start; gap: 0.8rem;
+            background: rgba(255,255,255,0.02);
+        }
+        .radio-card:hover { border-color: rgba(245,158,11,0.3); background: rgba(245,158,11,0.04); }
+        .radio-card input[type="radio"] { margin-top: 3px; flex-shrink: 0; accent-color: var(--gold); }
+        .radio-card-title { font-weight: 700; font-size: 0.9rem; color: var(--white); }
+        .radio-card-sub { color: var(--muted); font-size: 0.77rem; margin-top: 0.15rem; line-height: 1.55; }
+        .submit-btn {
             width: 100%;
-            background: linear-gradient(135deg, #3B82F6, #4ADE80);
-            color: #0F2744;
-            font-weight: bold;
-            padding: 1rem;
-            border: none;
-            border-radius: 0.5rem;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: opacity 0.3s;
-            margin-top: 1rem;
+            background: linear-gradient(135deg, var(--gold), #D97706);
+            color: #09060A; font-weight: 900; padding: 1.15rem;
+            border: none; border-radius: 0.75rem; font-size: 1.05rem;
+            cursor: pointer; transition: all 0.25s; margin-top: 1.75rem;
+            font-family: 'Inter', sans-serif; letter-spacing: 0.02em;
+            box-shadow: 0 4px 24px rgba(245,158,11,0.3);
         }
-        
-        button:hover {
-            opacity: 0.9;
-        }
-        
-        .note {
-            text-align: center;
-            color: #93C5FD;
-            font-size: 0.9rem;
-            margin-top: 1rem;
-        }
-        
+        .submit-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 40px rgba(245,158,11,0.45); }
+        .trust-row { display: flex; justify-content: center; gap: 1.5rem; margin-top: 1.25rem; flex-wrap: wrap; }
+        .trust-chip { color: var(--muted); font-size: 0.78rem; display: flex; align-items: center; gap: 0.35rem; font-weight: 500; }
+
+        /* ── FOOTER ── */
         .footer {
-            text-align: center;
-            color: #93C5FD;
-            font-size: 0.85rem;
-            margin-top: 3rem;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(59, 130, 246, 0.2);
+            border-top: 1px solid rgba(255,255,255,0.06);
+            padding: 3.5rem 0 2rem; text-align: center;
+            background: rgba(0,0,0,0.2);
         }
-        
-        @media (max-width: 600px) {
-            .hero h2 {
-                font-size: 1.8rem;
-            }
-            
-            .value-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .radio-group {
-                grid-template-columns: 1fr;
-            }
+        .footer-logo-wrap {
+            display: inline-block; background: white;
+            border-radius: 14px; padding: 8px 14px; margin-bottom: 1.25rem;
+        }
+        .footer-logo-wrap img { height: 50px; width: auto; display: block; }
+        .footer-tagline { color: var(--muted); font-size: 0.85rem; margin-bottom: 1.75rem; font-weight: 500; }
+        .footer-links { display: flex; justify-content: center; gap: 2rem; margin-bottom: 1.75rem; flex-wrap: wrap; }
+        .footer-links a { color: #64748B; text-decoration: none; font-size: 0.85rem; transition: color 0.2s; font-weight: 500; }
+        .footer-links a:hover { color: var(--gold-light); }
+        .footer-legal { color: rgba(100,116,139,0.6); font-size: 0.76rem; line-height: 2; }
+        .footer-divider { width: 48px; height: 2px; background: linear-gradient(90deg, transparent, var(--gold), transparent); margin: 0 auto 1.5rem; border-radius: 2px; }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.4rem; }
+            .steps { grid-template-columns: 1fr; }
+            .steps::before { display: none; }
+            .included-grid { grid-template-columns: repeat(2, 1fr); }
+            .mechanics-grid { grid-template-columns: 1fr; }
+            .testimonials-grid { grid-template-columns: repeat(2, 1fr); }
+            .form-grid { grid-template-columns: 1fr; }
+            .form-group.full { grid-column: 1; }
+            .radio-cards { grid-template-columns: 1fr; }
+            .trust-items { gap: 1.25rem; }
+            .coming-soon-card { grid-template-columns: 1fr; }
+            .coming-soon-img-wrap { max-height: 220px; }
+            .location-picker { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 560px) {
+            .hero h1 { font-size: 1.9rem; }
+            .hero p { font-size: 1rem; }
+            .header-cta { display: none; }
+            .section { padding: 4rem 0; }
+            .included-grid { grid-template-columns: 1fr; }
+            .testimonials-grid { grid-template-columns: 1fr; }
+            .form-section-inner { padding: 1.75rem; }
         }
     </style>
 </head>
 <body>
-    <div class="header">
-        <div class="header-content">
-            <div class="logo">🏎️</div>
-            <div class="header-text">
-                <h1>IRIS Automation</h1>
-                <p>Mechanic Voucher Packs</p>
+
+    <!-- ═══ HEADER ═══ -->
+    <header class="header">
+        <div class="container">
+            <div class="header-inner">
+                <div class="logo-area">
+                    <div class="logo-img-wrap">
+                        <img src="IRIS Automation/IRIS automation brand logo.jpg" alt="IRIS Automation">
+                    </div>
+                    <div>
+                        <div class="logo-text">IRIS Automation</div>
+                        <div class="logo-sub">Mechanic Voucher Packs · Canberra</div>
+                    </div>
+                </div>
+                <a href="#get-yours" class="header-cta">Get Yours $299</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- ═══ HERO ═══ -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-badge">🇦🇺 Canberra Locals Only &nbsp;·&nbsp; Limited Availability</div>
+            <h1>Save Over $2,000<br>on Your Car Servicing</h1>
+            <p>Stop paying full price at the mechanic. Get over $2,000 in labour discounts at a trusted Canberra workshop. One off price, no subscription, no hidden fees.</p>
+            <div class="hero-ctas">
+                <a href="#pick-location" class="btn-gold">Find My Nearest Workshop →</a>
+                <a href="#how-it-works" class="btn-outline">See How It Works</a>
+            </div>
+            <div class="voucher-preview">
+                <div class="voucher-hero-wrap">
+                    <img src="JB AUTOMOBILES/1.png" alt="JB Automobiles Voucher" class="voucher-hero-img">
+                </div>
+                <div class="voucher-hero-wrap">
+                    <img src="ACT Autocare/1.png" alt="ACT Autocare Voucher" class="voucher-hero-img">
+                </div>
+                <div class="voucher-hero-wrap">
+                    <div class="voucher-cs-badge">🔜 Coming Soon</div>
+                    <img src="Capital Auto & Tyre/1.png" alt="Capital Auto & Tyre Voucher" class="voucher-hero-img">
+                    <div class="voucher-cs-overlay"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ TRUST BAR ═══ -->
+    <div class="trust-bar">
+        <div class="container">
+            <div class="trust-items">
+                <div class="trust-item"><span class="t-icon">✅</span> 100+ Canberra Locals Saving</div>
+                <div class="trust-item"><span class="t-icon">🔒</span> Secure Square Payment</div>
+                <div class="trust-item"><span class="t-icon">📅</span> 24 Month Validity</div>
+                <div class="trust-item"><span class="t-icon">📱</span> Afterpay Available</div>
             </div>
         </div>
     </div>
 
-    <div class="container">
-        <div class="hero">
-            <h2>Save $2,065 on Car Maintenance</h2>
-            <p>Limited offer: 2 years of discounted labour at your choice of local mechanic</p>
-            <div class="price-badge">$299 Today Only</div>
-        </div>
+    <!-- ═══ LOCATION PICKER ═══ -->
+    <section class="section" id="pick-location">
+        <div class="container">
+            <div class="section-eyebrow">
+                <div class="eyebrow-line"></div>
+                <span class="eyebrow-text">Choose Your Workshop</span>
+                <div class="eyebrow-line"></div>
+            </div>
+            <h2 class="section-title">Find Your Local Participating Workshop</h2>
+            <p class="section-sub">Type your suburb below and we will point you to the closest participating workshop</p>
+            <div class="suburb-search-wrap">
+                <div class="suburb-search-label">Enter your suburb</div>
+                <input type="text" id="suburbInput" class="suburb-input" placeholder="e.g. Belconnen, Kingston, Gungahlin..." oninput="searchSuburb(this.value)" autocomplete="off">
+                <div id="suburb-result" class="suburb-result"></div>
+            </div>
+            <div class="location-picker" id="location-picker-grid">
 
-        <div class="value-grid">
-            <div class="value-card">
-                <div class="amount">$275</div>
-                <div class="label">Major Logbook Service</div>
-            </div>
-            <div class="value-card">
-                <div class="amount">$100 x2</div>
-                <div class="label">Minor Services</div>
-            </div>
-            <div class="value-card">
-                <div class="amount">$100 x2</div>
-                <div class="label">Brake Pads & Rotors</div>
-            </div>
-            <div class="value-card">
-                <div class="amount">24 Mo</div>
-                <div class="label">Validity Period</div>
-            </div>
-        </div>
-
-        <form class="form-container" id="voucherForm">
-            <h3>Get Your Voucher</h3>
-            
-            <div class="form-group">
-                <label>Full Name *</label>
-                <input type="text" name="fullName" required>
-            </div>
-
-            <div class="form-group">
-                <label>Email *</label>
-                <input type="email" name="email" required>
-            </div>
-
-            <div class="form-group">
-                <label>Phone *</label>
-                <input type="tel" name="phone" required>
-            </div>
-
-            <div class="form-group">
-                <label>Car Make (e.g., Toyota) *</label>
-                <input type="text" name="carMake" required>
-            </div>
-
-            <div class="form-group">
-                <label>Car Model (e.g., Corolla) *</label>
-                <input type="text" name="carModel" required>
-            </div>
-
-            <div class="form-group">
-                <label>Address *</label>
-                <input type="text" name="address" required>
-            </div>
-
-            <div class="form-group">
-                <label>Postcode *</label>
-                <input type="text" name="postcode" required>
-            </div>
-
-            <div class="form-group">
-                <label>Choose Your Mechanic *</label>
-                <div class="radio-group" style="grid-template-columns: 1fr;">
-                    <label class="radio-label">
-                        <input type="radio" name="mechanic" value="JB Automobiles" required>
-                        <div class="radio-text">
-                            JB Automobiles
-                            <span class="subtitle">MacGregor • (02) 5117 3992</span>
+                <!-- JB AUTOMOBILES -->
+                <div class="location-card active-loc">
+                    <img src="JB AUTOMOBILES/1.png" alt="JB Automobiles" class="location-card-img">
+                    <div class="location-card-body">
+                        <div>
+                            <div class="location-card-name">JB Automobiles</div>
+                            <div class="location-card-suburb">📍 MacGregor, Belconnen</div>
                         </div>
-                    </label>
-                    <label class="radio-label">
-                        <input type="radio" name="mechanic" value="ACT Autocare">
-                        <div class="radio-text">
-                            ACT Autocare
-                            <span class="subtitle">Fyshwick • 0434 979 792</span>
+                        <div class="location-card-areas">
+                            <span class="loc-area-tag">Belconnen</span>
+                            <span class="loc-area-tag">Florey</span>
+                            <span class="loc-area-tag">Fraser</span>
+                            <span class="loc-area-tag">Macquarie</span>
+                            <span class="loc-area-tag">Bruce</span>
+                            <span class="loc-area-tag">Evatt</span>
+                            <span class="loc-area-tag">Page</span>
                         </div>
-                    </label>
+                        <div class="location-detail">🕐 Mon to Fri: 8:00am to 5:00pm</div>
+                        <div class="location-detail">🏆 European vehicle specialist</div>
+                        <div class="location-card-value">
+                            <span class="lv-label">Voucher value</span>
+                            <span class="lv-amount">over $2,000</span>
+                        </div>
+                    </div>
+                    <button class="location-select-btn" onclick="selectMechanic('JB Automobiles')">Choose JB Automobiles →</button>
+                </div>
+
+                <!-- ACT AUTOCARE -->
+                <div class="location-card active-loc">
+                    <img src="ACT Autocare/1.png" alt="ACT Autocare" class="location-card-img">
+                    <div class="location-card-body">
+                        <div>
+                            <div class="location-card-name">ACT Autocare</div>
+                            <div class="location-card-suburb">📍 Fyshwick, Inner South</div>
+                        </div>
+                        <div class="location-card-areas">
+                            <span class="loc-area-tag">Kingston</span>
+                            <span class="loc-area-tag">Griffith</span>
+                            <span class="loc-area-tag">Narrabundah</span>
+                            <span class="loc-area-tag">Manuka</span>
+                            <span class="loc-area-tag">Barton</span>
+                            <span class="loc-area-tag">Queanbeyan</span>
+                            <span class="loc-area-tag">Hume</span>
+                        </div>
+                        <div class="location-detail">🕐 Mon to Fri: 9am to 5:30pm · Sat: 10am to 4pm</div>
+                        <div class="location-detail">🔧 All makes and models · Open Saturdays</div>
+                        <div class="location-card-value">
+                            <span class="lv-label">Voucher value</span>
+                            <span class="lv-amount">over $2,000</span>
+                        </div>
+                    </div>
+                    <button class="location-select-btn" onclick="selectMechanic('ACT Autocare')">Choose ACT Autocare →</button>
+                </div>
+
+                <!-- CAPITAL AUTO & TYRE - COMING SOON -->
+                <div class="location-card coming-loc">
+                    <img src="Capital Auto & Tyre/1.png" alt="Capital Auto & Tyre" class="location-card-img" style="filter:brightness(0.7)">
+                    <div class="location-card-body">
+                        <div>
+                            <div class="location-card-name">Capital Auto & Tyre</div>
+                            <div class="location-card-suburb">📍 Amaroo, Gungahlin</div>
+                        </div>
+                        <div class="location-card-areas">
+                            <span class="loc-area-tag">Gungahlin</span>
+                            <span class="loc-area-tag">Harrison</span>
+                            <span class="loc-area-tag">Franklin</span>
+                            <span class="loc-area-tag">Ngunnawal</span>
+                            <span class="loc-area-tag">Palmerston</span>
+                            <span class="loc-area-tag">Casey</span>
+                            <span class="loc-area-tag">Forde</span>
+                        </div>
+                        <div class="location-detail">🕐 Mon to Fri: 8am to 5pm · Sat: 9am to 12pm</div>
+                        <div class="location-detail">🏆 30+ years experience · All brands</div>
+                        <div class="location-card-value">
+                            <span class="lv-label">Voucher value</span>
+                            <span class="lv-amount">over $2,000</span>
+                        </div>
+                    </div>
+                    <div class="location-cs-btn">🔜 Coming Soon. Check Back Shortly</div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ HOW IT WORKS ═══ -->
+    <section class="section" id="how-it-works">
+        <div class="container">
+            <div class="section-eyebrow">
+                <div class="eyebrow-line"></div>
+                <span class="eyebrow-text">Simple Process</span>
+                <div class="eyebrow-line"></div>
+            </div>
+            <h2 class="section-title">How It Works</h2>
+            <p class="section-sub">Three steps between you and years of savings on your car maintenance</p>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Choose Your Local Workshop</h3>
+                    <p>Select your nearest participating workshop and secure your VIP voucher with a simple one off payment. No subscriptions, no recurring charges.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Receive Your VIP Voucher</h3>
+                    <p>Your VIP voucher lands in your inbox within minutes of purchase, or collect a physical copy locally in Canberra.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Book and Save for 2 Years</h3>
+                    <p>Call your workshop, quote your VIP number and enjoy discounted labour. Your 24 months only starts from your very first visit.</p>
                 </div>
             </div>
+        </div>
+    </section>
 
-            <div class="form-group">
-                <label>How Would You Like Your Voucher? *</label>
-                <div class="radio-group">
-                    <label class="radio-label">
-                        <input type="radio" name="delivery" value="pdf" required>
-                        <div class="radio-text">
-                            Digital PDF
-                            <span class="subtitle">Instant delivery</span>
-                        </div>
-                    </label>
-                    <label class="radio-label">
-                        <input type="radio" name="delivery" value="pickup">
-                        <div class="radio-text">
-                            Local Pickup
-                            <span class="subtitle">In Canberra</span>
-                        </div>
-                    </label>
+    <!-- ═══ VOUCHER SHOWCASE ═══ -->
+    <section class="section alt-bg">
+        <div class="container">
+            <div class="section-eyebrow">
+                <div class="eyebrow-line"></div>
+                <span class="eyebrow-text">Your Voucher</span>
+                <div class="eyebrow-line"></div>
+            </div>
+            <h2 class="section-title">See Exactly What You Get</h2>
+            <p class="section-sub">Preview your full voucher with the included services and labour savings before purchasing</p>
+            <div class="voucher-tabs">
+                <button class="tab-btn active" onclick="switchTab('jb', this)">JB Automobiles · MacGregor</button>
+                <button class="tab-btn" onclick="switchTab('act', this)">ACT Autocare · Fyshwick</button>
+                <button class="tab-btn" onclick="switchTab('cat', this)">Capital Auto & Tyre · Amaroo 🔜</button>
+            </div>
+            <div id="tab-jb" class="tab-panel active">
+                <div class="voucher-pair">
+                    <div class="voucher-pair-wrap">
+                        <img src="JB AUTOMOBILES/1.png" alt="JB Automobiles Front" class="voucher-pair-img">
+                        <div class="voucher-label">Front · Your Service Breakdown</div>
+                    </div>
+                    <div class="voucher-pair-wrap">
+                        <img src="JB AUTOMOBILES/6.png" alt="JB Automobiles Back" class="voucher-pair-img">
+                        <div class="voucher-label">Back · Terms and How To Use</div>
+                    </div>
                 </div>
             </div>
-
-            <button type="submit">Complete Purchase - $299</button>
-            <div class="note">💳 Secure payment processed via Square</div>
-        </form>
-
-        <div class="footer">
-            <p>Questions? Contact Joshua Rhodes at info@irisautomation.com.au</p>
-            <p style="margin-top: 1rem;">© 2026 IRIS Automation. All rights reserved.</p>
+            <div id="tab-act" class="tab-panel">
+                <div class="voucher-pair">
+                    <div class="voucher-pair-wrap">
+                        <img src="ACT Autocare/1.png" alt="ACT Autocare Front" class="voucher-pair-img">
+                        <div class="voucher-label">Front · Your Service Breakdown</div>
+                    </div>
+                    <div class="voucher-pair-wrap">
+                        <img src="ACT Autocare/2.png" alt="ACT Autocare Back" class="voucher-pair-img">
+                        <div class="voucher-label">Back · Terms and How To Use</div>
+                    </div>
+                </div>
+            </div>
+            <div id="tab-cat" class="tab-panel">
+                <div style="text-align:center; margin-bottom: 1.5rem;">
+                    <span style="background: rgba(251,191,36,0.1); border: 1px solid rgba(251,191,36,0.25); color: #FCD34D; padding: 0.4rem 1.1rem; border-radius: 100px; font-size: 0.82rem; font-weight: 700; letter-spacing: 0.05em;">🔜 Coming Soon · Amaroo, Gungahlin</span>
+                </div>
+                <div class="voucher-pair">
+                    <div class="voucher-pair-wrap" style="position:relative;">
+                        <img src="Capital Auto & Tyre/1.png" alt="Capital Auto and Tyre Front" class="voucher-pair-img" style="filter: brightness(0.8);">
+                        <div style="position:absolute; inset:0; display:flex; align-items:center; justify-content:center; border-radius:1rem; background: rgba(6,8,26,0.3);">
+                            <div style="background: rgba(6,8,26,0.85); border: 1px solid rgba(245,158,11,0.3); border-radius: 0.75rem; padding: 0.75rem 1.5rem; text-align:center;">
+                                <div style="color: var(--gold); font-weight: 800; font-size: 1rem;">Coming Soon</div>
+                                <div style="color: var(--muted); font-size: 0.8rem; margin-top: 0.2rem;">Contract signing in progress</div>
+                            </div>
+                        </div>
+                        <div class="voucher-label">Front · Service Breakdown</div>
+                    </div>
+                    <div class="voucher-pair-wrap" style="position:relative;">
+                        <img src="Capital Auto & Tyre/2.png" alt="Capital Auto and Tyre Back" class="voucher-pair-img" style="filter: brightness(0.8);">
+                        <div style="position:absolute; inset:0; display:flex; align-items:center; justify-content:center; border-radius:1rem; background: rgba(6,8,26,0.3);">
+                            <div style="background: rgba(6,8,26,0.85); border: 1px solid rgba(245,158,11,0.3); border-radius: 0.75rem; padding: 0.75rem 1.5rem; text-align:center;">
+                                <div style="color: var(--gold); font-weight: 800; font-size: 1rem;">$2,065 Value</div>
+                                <div style="color: var(--muted); font-size: 0.8rem; margin-top: 0.2rem;">Amaroo, Gungahlin ACT</div>
+                            </div>
+                        </div>
+                        <div class="voucher-label">Back · Terms and How To Use</div>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
+    </section>
+
+    <!-- ═══ WHAT'S INCLUDED ═══ -->
+    <section class="section">
+        <div class="container">
+            <div class="section-eyebrow">
+                <div class="eyebrow-line"></div>
+                <span class="eyebrow-text">What's Included</span>
+                <div class="eyebrow-line"></div>
+            </div>
+            <h2 class="section-title">Every Service, At a Fraction of the Cost</h2>
+            <p class="section-sub">Save on the services you already need</p>
+            <div class="included-grid">
+                <div class="included-card">
+                    <div class="included-icon">🔧</div>
+                    <div>
+                        <h4>Major Logbook Service</h4>
+                        <div class="value">Up to $275 off</div>
+                        <p>Warranty approved workshop stamps your logbook. Manufacturer warranty stays 100% intact.</p>
+                    </div>
+                </div>
+                <div class="included-card">
+                    <div class="included-icon">⚙️</div>
+                    <div>
+                        <h4>2× Minor Logbook Services</h4>
+                        <div class="value">Up to $150 each</div>
+                        <p>Oil change, filters, safety inspection and fluid top-ups. Done twice over your 2 years.</p>
+                    </div>
+                </div>
+                <div class="included-card">
+                    <div class="included-icon">🛞</div>
+                    <div>
+                        <h4>Brake Pads & Rotors</h4>
+                        <div class="value">Up to $150 each</div>
+                        <p>Front or rear brake labour discounts. One of the most costly routine repairs on any car.</p>
+                    </div>
+                </div>
+                <div class="included-card">
+                    <div class="included-icon">🔍</div>
+                    <div>
+                        <h4>2× Diagnostic Scans</h4>
+                        <div class="value">Up to $150 each</div>
+                        <p>Full computer diagnostics to catch engine and electronic issues before they escalate</p>
+                    </div>
+                </div>
+                <div class="included-card">
+                    <div class="included-icon">🔋</div>
+                    <div>
+                        <h4>Battery, Transmission & More</h4>
+                        <div class="value">Up to $200 off each</div>
+                        <p>Battery replacement, transmission service, shock replacement, mechanical repairs. All covered.</p>
+                    </div>
+                </div>
+                <div class="included-card">
+                    <div class="included-icon">📅</div>
+                    <div>
+                        <h4>Clock Starts on Your First Visit</h4>
+                        <div class="value">24 full months from your first booking</div>
+                        <p>Your 24 months does not begin until you walk in for the first time. Buy today and activate whenever you are ready.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="total-value-box">
+                <div class="vs">Total labour value inside your pack</div>
+                <div class="price-row">
+                    <span class="price-crossed">over $2,000</span>
+                    <span class="price-arrow">→</span>
+                    <span class="price-real">$299</span>
+                </div>
+                <p class="saving-note">You save <span class="saving-highlight">over $1,700</span>, that is <span class="saving-highlight">over 85% off</span> the standard cost of these services</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ MECHANICS ═══ -->
+    <section class="section alt-bg">
+        <div class="container">
+            <div class="section-eyebrow">
+                <div class="eyebrow-line"></div>
+                <span class="eyebrow-text">Partner Workshops</span>
+                <div class="eyebrow-line"></div>
+            </div>
+            <h2 class="section-title">Choose Your Mechanic</h2>
+            <p class="section-sub">Two trusted partnered workshops right here in Canberra. Pick the one closest to you.</p>
+            <div class="mechanics-grid">
+                <div class="mechanic-card">
+                    <img src="JB AUTOMOBILES/1.png" alt="JB Automobiles Voucher" class="mechanic-voucher-img">
+                    <div class="mechanic-body">
+                        <div class="mechanic-header">
+                            <div class="mechanic-icon">🔩</div>
+                            <div>
+                                <div class="mechanic-name">JB Automobiles</div>
+                                <div class="mechanic-suburb">MacGregor · European Specialist</div>
+                            </div>
+                        </div>
+                        <div class="mechanic-detail">📍 103 Osburn Dr, MacGregor ACT 2615</div>
+                        <div class="mechanic-detail">📞 (02) 5117 3992</div>
+                        <div class="mechanic-detail">🕐 Mon to Fri: 8:00am to 5:00pm</div>
+                        <div class="mechanic-detail">✅ Warranty Approved Service</div>
+                        <div class="service-list">
+                            <div class="service-list-title">Your Savings Breakdown</div>
+                            <div class="service-row"><span class="service-name">1× Major Logbook Service</span><span class="service-saving">$250 off</span></div>
+                            <div class="service-row"><span class="service-name">2× Minor Logbook Services</span><span class="service-saving">$150 each</span></div>
+                            <div class="service-row"><span class="service-name">2× Brake Pad Replacements</span><span class="service-saving">$150 each</span></div>
+                            <div class="service-row"><span class="service-name">2× Diagnostic Scans</span><span class="service-saving">$150 each</span></div>
+                            <div class="service-row"><span class="service-name">1× Tyre Rotation & Balance</span><span class="service-saving">$170 off</span></div>
+                            <div class="service-row"><span class="service-name">1× Performance Upgrade</span><span class="service-saving">$150 off</span></div>
+                            <div class="service-row"><span class="service-name">1× Battery Replacement</span><span class="service-saving">$100 off</span></div>
+                            <div class="service-row"><span class="service-name">2× Discount Mechanical Repairs</span><span class="service-saving">$150 each</span></div>
+                            <div class="service-row"><span class="service-name">1× Pre-Purchase Inspection</span><span class="service-saving">$50 off</span></div>
+                            <div class="service-row"><span class="service-name">2× Basic Car Cleans</span><span class="service-saving">$45 each</span></div>
+                        </div>
+                        <div class="mechanic-value">
+                            <span class="label">Total labour value</span>
+                            <span class="amount">over $2,000</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="mechanic-card">
+                    <img src="ACT Autocare/1.png" alt="ACT Autocare Voucher" class="mechanic-voucher-img">
+                    <div class="mechanic-body">
+                        <div class="mechanic-header">
+                            <div class="mechanic-icon">🔧</div>
+                            <div>
+                                <div class="mechanic-name">ACT Autocare</div>
+                                <div class="mechanic-suburb">Fyshwick · All Makes & Models</div>
+                            </div>
+                        </div>
+                        <div class="mechanic-detail">📍 Unit 2/15 Yallourn St, Fyshwick ACT 2609</div>
+                        <div class="mechanic-detail">📞 0434 979 792</div>
+                        <div class="mechanic-detail">🕐 Mon to Fri: 9:00am to 5:30pm · Sat: 10am to 4pm</div>
+                        <div class="mechanic-detail">✅ Warranty Approved Service</div>
+                        <div class="service-list">
+                            <div class="service-list-title">Your Savings Breakdown</div>
+                            <div class="service-row"><span class="service-name">1× Major Logbook Service</span><span class="service-saving">$275 off</span></div>
+                            <div class="service-row"><span class="service-name">2× Minor Logbook Services</span><span class="service-saving">$100 each</span></div>
+                            <div class="service-row"><span class="service-name">2× Brake Pad Replacements</span><span class="service-saving">$100 each</span></div>
+                            <div class="service-row"><span class="service-name">2× Brake Rotor Replacements</span><span class="service-saving">$100 each</span></div>
+                            <div class="service-row"><span class="service-name">2× Diagnostic Scans</span><span class="service-saving">$100 each</span></div>
+                            <div class="service-row"><span class="service-name">1× Battery Replacement</span><span class="service-saving">$100 off</span></div>
+                            <div class="service-row"><span class="service-name">2× Discount Mechanical Repairs</span><span class="service-saving">$150 each</span></div>
+                            <div class="service-row"><span class="service-name">1× Transmission Service</span><span class="service-saving">$100 off</span></div>
+                            <div class="service-row"><span class="service-name">1× Shock Replacement</span><span class="service-saving">$200 off</span></div>
+                            <div class="service-row"><span class="service-name">1× Windscreen Wiper Replacement</span><span class="service-saving">$40 off</span></div>
+                            <div class="service-row"><span class="service-name">1× Pre-Purchase Inspection</span><span class="service-saving">$50 off</span></div>
+                            <div class="service-row"><span class="service-name">Full Set of 4 Tyres</span><span class="service-saving">$200 off</span></div>
+                        </div>
+                        <div class="mechanic-value">
+                            <span class="label">Total labour value</span>
+                            <span class="amount">over $2,000</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="coming-soon-card">
+                    <div class="coming-soon-img-wrap">
+                        <img src="Capital Auto & Tyre/1.png" alt="Capital Auto & Tyre Voucher">
+                        <div class="coming-soon-img-overlay"></div>
+                    </div>
+                    <div class="coming-soon-body">
+                        <div class="coming-soon-badge">🔜 Coming Soon</div>
+                        <div>
+                            <div class="coming-soon-name">Capital Auto & Tyre</div>
+                            <div class="coming-soon-location">Amaroo, Gungahlin ACT</div>
+                        </div>
+                        <div class="coming-soon-details">
+                            <div class="coming-soon-detail">📍 180 Katherine Ave, Amaroo ACT 2914</div>
+                            <div class="coming-soon-detail">📞 0261 568 863</div>
+                            <div class="coming-soon-detail">🕐 Mon to Fri: 8:00am to 5:00pm · Sat: 9:00am to 12:00pm</div>
+                            <div class="coming-soon-detail">✅ Warranty Approved · 30+ Years Experience</div>
+                        </div>
+                        <div class="coming-soon-services">
+                            <span class="cs-tag">Engine Repairs</span>
+                            <span class="cs-tag">Logbook Services</span>
+                            <span class="cs-tag">Loan Car</span>
+                            <span class="cs-tag">Tow Truck</span>
+                            <span class="cs-tag">Warranty Parts</span>
+                            <span class="cs-tag">Auto Electrical</span>
+                            <span class="cs-tag">Clutch</span>
+                        </div>
+                        <div class="coming-soon-value">
+                            <span class="label">Labour value when available</span>
+                            <span class="amount">over $2,000</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ TESTIMONIALS ═══ -->
+    <section class="section">
+        <div class="container">
+            <div class="section-eyebrow">
+                <div class="eyebrow-line"></div>
+                <span class="eyebrow-text">Real Reviews</span>
+                <div class="eyebrow-line"></div>
+            </div>
+            <h2 class="section-title">What Canberra Locals Are Saying</h2>
+            <p class="section-sub">From people who stopped paying full price at the mechanic</p>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="stars">★★★★★</div>
+                    <p class="testimonial-text">"Honestly did not expect much when I first signed up but this has been one of the better decisions I have made for my car. Already knocked off my logbook and a minor service and it more than paid for itself. My partner is getting one now too."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">SM</div>
+                        <div><div class="author-name">Sarah M.</div><div class="author-location">Belconnen, ACT</div></div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars">★★★★★</div>
+                    <p class="testimonial-text">"Good value. JB did a solid job on the Corolla, no dramas. Will be buying another one."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">DK</div>
+                        <div><div class="author-name">Dave K.</div><div class="author-location">Florey, ACT</div></div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars">★★★★★</div>
+                    <p class="testimonial-text">"I needed brake pads and a service done so the timing worked out perfectly. The booking was easy, they were upfront about everything and I walked out paying almost nothing in labour. Exactly what it says on the tin."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">PT</div>
+                        <div><div class="author-name">Priya T.</div><div class="author-location">Gungahlin, ACT</div></div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars">★★★★★</div>
+                    <p class="testimonial-text">"Picked up two packs, one for me and one for my partner. We both drive different cars and ACT Autocare handled both no problem. The fact they are open Saturdays is a big deal for us since we both work during the week. Really happy with it."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">MR</div>
+                        <div><div class="author-name">Mark R.</div><div class="author-location">Kingston, ACT</div></div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars">★★★★★</div>
+                    <p class="testimonial-text">"I was literally just walking to my car when these guys stopped me. Nearly said no but something told me to hear them out. Ended up buying on the spot and three services later I reckon it is one of the better impulse decisions I have ever made."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">JF</div>
+                        <div><div class="author-name">Jess F.</div><div class="author-location">Queanbeyan, NSW</div></div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars">★★★★★</div>
+                    <p class="testimonial-text">"Drive a BMW 3 Series and finding a mechanic who actually knows European cars is harder than it sounds. JB were thorough and did not try to upsell me on things I did not need. The savings on my first visit alone covered most of what I paid for the pack."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">CO</div>
+                        <div><div class="author-name">Chris O.</div><div class="author-location">Macquarie, ACT</div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ FAQ ═══ -->
+    <section class="section alt-bg">
+        <div class="container">
+            <div class="section-eyebrow">
+                <div class="eyebrow-line"></div>
+                <span class="eyebrow-text">Questions</span>
+                <div class="eyebrow-line"></div>
+            </div>
+            <h2 class="section-title">Common Questions</h2>
+            <p class="section-sub">Everything you need to know before you buy</p>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">What's the catch? Why is it so cheap?<span class="faq-chevron">▼</span></button>
+                    <div class="faq-answer"><div class="faq-answer-inner">There is no catch. The mechanic workshops want loyal long term customers. By offering discounted labour upfront, they earn your repeat business for years. You get the savings, they get a committed customer. Everybody wins.</div></div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">Can I use it on any car make or model?<span class="faq-chevron">▼</span></button>
+                    <div class="faq-answer"><div class="faq-answer-inner">Yes, both workshops service all makes and models. JB Automobiles specialises in European vehicles (BMW, Mercedes, Audi, VW etc.), while ACT Autocare handles all makes including Japanese and Korean cars.</div></div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">How quickly do I receive my voucher?<span class="faq-chevron">▼</span></button>
+                    <div class="faq-answer"><div class="faq-answer-inner">If you choose digital PDF, your voucher lands in your inbox within minutes of purchase. Local Canberra pickup is also available if you'd prefer a physical copy to keep in your glovebox.</div></div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">Do I have to use all the services at once?<span class="faq-chevron">▼</span></button>
+                    <div class="faq-answer"><div class="faq-answer-inner">Not at all. Your 24 months does not even start until your very first workshop visit, so you have complete flexibility. Buy now and activate whenever you are ready. Each service is redeemed separately as your car needs it, up to 3 per visit. Just call, quote your VIP number and book in.</div></div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">Is the payment secure?<span class="faq-chevron">▼</span></button>
+                    <div class="faq-answer"><div class="faq-answer-inner">Yes. All payments are processed through Square, the same platform used by thousands of Australian businesses. Afterpay is also available, letting you split the $299 into four interest free fortnightly payments.</div></div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">I have NSW plates. Can I still use this? Do I need to go to a NSW mechanic?<span class="faq-chevron">▼</span></button>
+                    <div class="faq-answer"><div class="faq-answer-inner">No issue at all. There is no requirement in Australia to service your car in the state it is registered. ACT mechanics service NSW plated vehicles every day. Your logbook gets stamped, your warranty stays intact and your rego is unaffected. If you are in Queanbeyan or Jerrabomberra, ACT Autocare in Fyshwick is just minutes from the border.</div></div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">Will this void my car's warranty or affect my dealership capped servicing?<span class="faq-chevron">▼</span></button>
+                    <div class="faq-answer"><div class="faq-answer-inner">No, and this is one of the most common misconceptions out there. Under Australian consumer law (the Competition and Consumer Act 2010), a car manufacturer or dealer cannot void your warranty simply because you chose to service your vehicle at a licensed independent mechanic. This is your legal right as a consumer, and the ACCC backs it. As long as the service is carried out to the manufacturer's specifications by a qualified technician, which both our partner workshops do, your warranty remains fully intact and your logbook gets stamped at every visit.<br><br>As for dealership capped price servicing, that is a separate dealer program and your voucher pack works alongside it. Many of our customers use the pack for services not covered under their capped deal, or once their capped period ends. Either way, you have 24 months from your very first visit. Plenty of time to get full value regardless of your situation.</div></div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">What if I want a refund?<span class="faq-chevron">▼</span></button>
+                    <div class="faq-answer"><div class="faq-answer-inner">Contact us at info@irisautomation.com.au or call 1300 267 139 and we'll sort it out. We stand behind our product and our partner mechanics 100%.</div></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ PURCHASE FORM ═══ -->
+    <section class="section" id="get-yours">
+        <div class="container">
+            <div class="section-eyebrow">
+                <div class="eyebrow-line"></div>
+                <span class="eyebrow-text">Get Started</span>
+                <div class="eyebrow-line"></div>
+            </div>
+            <h2 class="section-title">Get Your Voucher Pack</h2>
+            <p class="section-sub">Fill in your details and your voucher will be with you in minutes</p>
+            <form class="form-section-inner" id="voucherForm">
+                <div class="form-header">
+                    <div class="price-pill">$299 All Inclusive</div>
+                    <h3>Complete Your Purchase</h3>
+                    <p>Over $1,700 saved across 2 years of car maintenance</p>
+                </div>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>FIRST & LAST NAME *</label>
+                        <input type="text" name="fullName" placeholder="e.g. Sarah Mitchell" required>
+                    </div>
+                    <div class="form-group">
+                        <label>EMAIL ADDRESS *</label>
+                        <input type="email" name="email" placeholder="your@email.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label>PHONE NUMBER *</label>
+                        <input type="tel" name="phone" placeholder="04XX XXX XXX" required>
+                    </div>
+                    <div class="form-group">
+                        <label>REGISTRATION NUMBER *</label>
+                        <input type="text" name="rego" placeholder="e.g. ABC123" required>
+                    </div>
+                    <div class="form-group full">
+                        <label>CAR MAKE & MODEL *</label>
+                        <input type="text" name="carMakeModel" placeholder="e.g. Toyota Corolla" required>
+                    </div>
+                    <div class="form-group">
+                        <label>SUBURB *</label>
+                        <input type="text" name="suburb" placeholder="e.g. Belconnen" required>
+                    </div>
+                    <div class="form-group">
+                        <label>STREET ADDRESS *</label>
+                        <input type="text" name="address" placeholder="e.g. 12 Smith Street" required>
+                    </div>
+                    <div class="form-group full">
+                        <label>CHOOSE YOUR MECHANIC *</label>
+                        <div class="radio-cards stacked">
+                            <label class="radio-card">
+                                <input type="radio" name="mechanic" value="JB Automobiles" required>
+                                <div>
+                                    <div class="radio-card-title">JB Automobiles, MacGregor</div>
+                                    <div class="radio-card-sub">103 Osburn Dr · Mon to Fri 8am to 5pm · European specialist · over $2,000 in labour value</div>
+                                </div>
+                            </label>
+                            <label class="radio-card">
+                                <input type="radio" name="mechanic" value="ACT Autocare">
+                                <div>
+                                    <div class="radio-card-title">ACT Autocare, Fyshwick</div>
+                                    <div class="radio-card-sub">Unit 2/15 Yallourn St · Mon to Sat · All makes and models · over $2,000 in labour value</div>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group full">
+                        <label>VOUCHER DELIVERY *</label>
+                        <div class="radio-cards">
+                            <label class="radio-card">
+                                <input type="radio" name="delivery" value="pdf" required>
+                                <div>
+                                    <div class="radio-card-title">📧 Digital PDF</div>
+                                    <div class="radio-card-sub">Sent to your inbox instantly after purchase</div>
+                                </div>
+                            </label>
+                            <label class="radio-card">
+                                <input type="radio" name="delivery" value="pickup">
+                                <div>
+                                    <div class="radio-card-title">📦 Local Pickup</div>
+                                    <div class="radio-card-sub">Collect a physical copy in Canberra</div>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="submit-btn">Complete Purchase $299 ✓</button>
+                <div class="trust-row">
+                    <span class="trust-chip">🔒 Secure Square Payment</span>
+                    <span class="trust-chip">📱 Afterpay Available</span>
+                    <span class="trust-chip">✉️ Instant Delivery</span>
+                    <span class="trust-chip">🇦🇺 Local Canberra Business</span>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- ═══ FOOTER ═══ -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-logo-wrap">
+                <img src="IRIS Automation/IRIS automation brand logo.jpg" alt="IRIS Automation">
+            </div>
+            <div class="footer-tagline">Premium Mechanic Voucher Packs · Canberra, ACT</div>
+            <div class="footer-divider"></div>
+            <div class="footer-links">
+                <a href="mailto:executive@irisautomation.com.au">executive@irisautomation.com.au</a>
+                <a href="tel:1300267139">1300 267 139</a>
+                <a href="#how-it-works">How It Works</a>
+                <a href="#get-yours">Get Your Pack</a>
+            </div>
+            <div class="footer-legal">
+                ABN: 25 636 105 741 &nbsp;·&nbsp; © 2026 IRIS Automation. All rights reserved.<br>
+                Canberra, ACT, Australia &nbsp;·&nbsp; All prices include GST
+            </div>
+        </div>
+    </footer>
 
     <script>
+        // ── SUBURB SEARCH ──
+        const suburbMap = {
+            // ── JB AUTOMOBILES — Belconnen District ──
+            'aranda':'jb',       'belconnen':'jb',   'bruce':'jb',
+            'charnwood':'jb',    'cook':'jb',         'dunlop':'jb',
+            'evatt':'jb',        'florey':'jb',       'flynn':'jb',
+            'fraser':'jb',       'giralang':'jb',     'hawker':'jb',
+            'higgins':'jb',      'holt':'jb',         'kaleen':'jb',
+            'latham':'jb',       'lawson':'jb',       'macgregor':'jb',
+            'mckellar':'jb',     'melba':'jb',        'page':'jb',
+            'scullin':'jb',      'spence':'jb',       'strathnairn':'jb',
+            'weetangera':'jb',   'macquarie':'jb',
+
+            // ── CAPITAL AUTO & TYRE — Gungahlin District (coming soon) ──
+            'amaroo':'cat',      'bonner':'cat',      'casey':'cat',
+            'crace':'cat',       'forde':'cat',       'franklin':'cat',
+            'gungahlin':'cat',   'hall':'cat',        'harrison':'cat',
+            'jacka':'cat',       'kenny':'cat',       'kinlyside':'cat',
+            'mitchell':'cat',    'moncrieff':'cat',   'ngunnawal':'cat',
+            'nicholls':'cat',    'palmerston':'cat',  'taylor':'cat',
+            'throsby':'cat',
+
+            // ── ACT AUTOCARE — Inner North & City ──
+            'acton':'act',       'ainslie':'act',     'barton':'act',
+            'braddon':'act',     'campbell':'act',    'civic':'act',
+            'city':'act',        'dickson':'act',     'downer':'act',
+            'forrest':'act',     'griffith':'act',    'hackett':'act',
+            'kingston':'act',    'lyneham':'act',     'manuka':'act',
+            'narrabundah':'act', "o'connor":'act',    'oconnor':'act',
+            'parkes':'act',      'red hill':'act',    'reid':'act',
+            'russell':'act',     'turner':'act',      'watson':'act',
+            'yarralumla':'act',
+
+            // ── ACT AUTOCARE — Inner South & Fyshwick ──
+            'fyshwick':'act',    'deakin':'act',      'hume':'act',
+            'pialligo':'act',    'symonston':'act',   'causeway':'act',
+            'harman':'act',
+
+            // ── ACT AUTOCARE — Woden Valley ──
+            'chifley':'act',     'curtin':'act',      'farrer':'act',
+            'garran':'act',      'hughes':'act',      'isaacs':'act',
+            'lyons':'act',       'mawson':'act',      "o'malley":'act',
+            'omalley':'act',     'pearce':'act',      'phillip':'act',
+            'torrens':'act',     'woden':'act',       'wright':'act',
+            'coombs':'act',      'greenway':'act',    'denman prospect':'act',
+            'molonglo':'act',
+
+            // ── ACT AUTOCARE — Tuggeranong ──
+            'banks':'act',       'bonython':'act',    'calwell':'act',
+            'chisholm':'act',    'conder':'act',      'gordon':'act',
+            'gowrie':'act',      'kambah':'act',      'macarthur':'act',
+            'oxley':'act',       'richardson':'act',  'theodore':'act',
+            'tuggeranong':'act', 'wanniassa':'act',   'isabella plains':'act',
+
+            // ── ACT AUTOCARE — Weston Creek ──
+            'chapman':'act',     'duffy':'act',       'fisher':'act',
+            'holder':'act',      'rivett':'act',      'stirling':'act',
+            'waramanga':'act',   'weston':'act',
+
+            // ── ACT AUTOCARE — East Canberra & Queanbeyan ──
+            'queanbeyan':'act',  'jerrabomberra':'act','googong':'act',
+            'karabar':'act',     'greenleigh':'act',
+        };
+        const mechInfo = {
+            'jb':  { label:'JB Automobiles in MacGregor',               card: 0, comingSoon: false },
+            'act': { label:'ACT Autocare in Fyshwick',                   card: 1, comingSoon: false },
+            'cat': { label:'Capital Auto and Tyre in Amaroo (coming soon)', card: 2, comingSoon: true  },
+        };
+        function searchSuburb(val) {
+            const key = val.trim().toLowerCase().replace(/[^a-z\s']/g,'');
+            const resultEl = document.getElementById('suburb-result');
+            const cards = document.querySelectorAll('.location-card');
+            cards.forEach(c => { c.classList.remove('highlighted'); });
+            if (!key || key.length < 2) { resultEl.style.display = 'none'; resultEl.className = 'suburb-result'; return; }
+            // Try exact then prefix match
+            let matchKey = null;
+            if (suburbMap[key]) {
+                matchKey = suburbMap[key];
+            } else {
+                for (const s in suburbMap) {
+                    if (s.startsWith(key)) { matchKey = suburbMap[s]; break; }
+                }
+            }
+            resultEl.style.display = 'block';
+            if (matchKey) {
+                const info = mechInfo[matchKey];
+                if (info.comingSoon) {
+                    resultEl.className = 'suburb-result found';
+                    resultEl.innerHTML = '📍 Your closest workshop is <strong>' + info.label + '</strong>. In the meantime, choose JB Automobiles or ACT Autocare below.';
+                } else {
+                    resultEl.className = 'suburb-result found';
+                    resultEl.innerHTML = '📍 Your closest workshop is <strong>' + info.label + '</strong>';
+                    cards[info.card].classList.add('highlighted');
+                }
+            } else {
+                resultEl.className = 'suburb-result not-found';
+                resultEl.innerHTML = '🔍 Suburb not found. Try a nearby area or browse the workshops below.';
+            }
+        }
+
+        function selectMechanic(name) {
+            // Find and check the matching radio button in the form
+            const radios = document.querySelectorAll('input[name="mechanic"]');
+            radios.forEach(function(radio) {
+                if (radio.value === name) {
+                    radio.checked = true;
+                    // Highlight the parent radio-card
+                    radio.closest('.radio-card').style.borderColor = 'rgba(245,158,11,0.55)';
+                    radio.closest('.radio-card').style.background = 'rgba(245,158,11,0.06)';
+                } else {
+                    radio.closest('.radio-card').style.borderColor = '';
+                    radio.closest('.radio-card').style.background = '';
+                }
+            });
+            // Smooth scroll to the form
+            document.getElementById('get-yours').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function switchTab(id, btn) {
+            document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            document.getElementById('tab-' + id).classList.add('active');
+            btn.classList.add('active');
+        }
+        function toggleFaq(btn) {
+            const item = btn.closest('.faq-item');
+            const isOpen = item.classList.contains('open');
+            document.querySelectorAll('.faq-item.open').forEach(el => el.classList.remove('open'));
+            if (!isOpen) item.classList.add('open');
+        }
         document.getElementById('voucherForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            alert('Thank you! Your order has been received.\n\nNext steps:\n1. Check your email for your voucher\n2. Contact your chosen mechanic to book an appointment\n3. Use your VIP number when you visit');
+            alert('Thank you! Your order has been received.\n\nNext steps:\n1. Check your email for your voucher PDF\n2. Call your chosen mechanic to book your first service\n3. Quote your VIP number on arrival\n\nWelcome to IRIS Automation!');
             this.reset();
         });
     </script>
